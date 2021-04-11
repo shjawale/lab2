@@ -38,14 +38,12 @@ int main(void) {
 
 	// 2) Perform computation
 	// total weight ignoring bits 1 and 0
-        totweight = (unsigned short)tmpA + (unsigned short)tmpB + (unsigned short)tmpC;
+        totweight = tmpA + tmpB + tmpC;
 	tmpD = totweight >> 2;
 
 	// 3) Output   
-	PORTD = ((unsigned char)tmpD) & 0xFC; //clears bits 1 and 0
+	PORTD = tmpD & 0xFC; //clears bits 1 and 0
 
-        //PORTD = (PORTD & 0x03) | tmpD; //retains PORTC's bit 1 and 0
-	
 	if(totweight > 0x8C){ //check if total weight is above 140 kg
 	    PORTD = PORTD | 0x01; //set bit 0 to 1
 	}
