@@ -26,33 +26,15 @@ int main(void) {
         // 1) Read input
         tmpA = PINA & 0x0F; // store A3A2A1A0
 	cntavail = 0x00;
+
+	// 2) Perform computation
+	// count number of open parking spaces in cntavail
         for(i = 0; i <= 3; i++){
             if(!(tmpA & (0x01 << i))){
 		cntavail += 1;
 	    }
 	}
 
-/*
-        tmpA = PINA & 0x01;
-        tmpA = PINA & 0x02;
-        tmpA = PINA & 0x04;
-        tmpA = PINA & 0x08;
-
-        // 2) Perform computation
-        // count number of open parking spaces in cntavail
-        if (tmpA == 0x01) { // True if PA0 is 1
-            tmpC = (tmpB & 0xFC) | 0x00; 
-        }
-	if (tmpA == 0x01) {
-	    tmpC = (tmpB & 0xFC) | 0x01; 
-	}
-	if(tmpA == 0x01) {
-	    tmpC = (tmpB & 0xFC) | 0x02;
-	}
-	if(tmpA == 0x01) {
-            tmpC = (tmpB & 0xFC) | 0x02;
-        }
-*/
 	// 3) Output   
         PORTC = cntavail;    
     }    
