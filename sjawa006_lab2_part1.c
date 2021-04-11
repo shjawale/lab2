@@ -13,6 +13,7 @@
 #endif
 
 int main(void) {
+    /* Insert DDR and PORT initializations */
     DDRA = 0x00; PORTA = 0xFF; // Configure port A's 8 pins as inputs
     DDRB = 0xFF; PORTB = 0x00; // Configure port B's 8 pins as outputs, initialize to 0s
     unsigned char tmpB = 0x00; // Temporary variable to hold the value of B
@@ -28,7 +29,7 @@ int main(void) {
             tmpB = (tmpB & 0xFC) | 0x01; // Sets tmpB to bbbbbb01
                                         // (clear rightmost 2 bits, then set to 01)
         } else {
-	    tmpB = (tmpB & 0xFC) | 0x02; // Sets tmpB to bbbbbb10
+	    tmpB = (tmpB & 0xFC) | 0x00; // Sets tmpB to bbbbbb10
 	}        
         PORTB = tmpB;    
     }    
